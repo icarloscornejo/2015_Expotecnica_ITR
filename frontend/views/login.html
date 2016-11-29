@@ -1,0 +1,23 @@
+<form>
+  <div class="input-group center-block">
+    <md-input-container>
+      <label style="color: white;">Usuario</label>
+      <input type="text" style="color: white;" ng-model="Usuario" type="text" required>
+    </md-input-container>
+  </div>
+  <div class="input-group center-block">
+    <md-input-container>
+      <label style="color: white;">Pass</label>
+      <input style="color: white;" ng-model="Pass" type="password" required>
+    </md-input-container>
+    
+  </div>
+  <br>
+  <md-button ng-click="login()" class="md-raised md-primary center-block">
+    <md-icon md-font-library="material-icons">verified_user</md-icon>
+    <span>Login</span>
+  </md-button>
+  <md-button href="#/registrarse" class="md-raised md-primary center-block">
+    <span>Registrarse</span>
+  </md-button>
+</form>

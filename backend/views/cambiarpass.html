@@ -1,0 +1,37 @@
+<div class="row backgroundSideAll">
+      <div class="col-sm-12">
+        <h1>Cambiar contraseña</h1>
+        <md-divider></md-divider>
+          <div class="table-responsive">
+            <form name="cambiarPassForm">
+              <br>
+              <div class="col-sm-6">
+                <md-input-container>
+                  <input type="password" ng-model="PassAntigua" placeholder="Antigua contraseña" md-maxlength="25" required autofocus>
+                </md-input-container>
+                <md-input-container>
+                  <input id="Pass" type="password" ng-model="usuarios.Pass" placeholder="Nueva contraseña *" minlength="6" md-maxlength="25" required>
+                </md-input-container>
+                <md-input-container>
+                  <input id="Pass2" type="password" ng-model="Pass2" placeholder="Repita su contraseña *" minlength="6" md-maxlength="25" required>
+                </md-input-container>
+                <br>
+              </div>
+              <div class="col-sm-6">
+                <md-divider></md-divider>
+                <h6><strong>*Las contraseñas deben de contener al menos 6 caracteres, incluyendo letras mayusculas, minusculas y numeros.</strong></h6>
+                <md-divider></md-divider>
+              </div>
+              <div class="col-sm-12">
+                <div class="col-sm-6">
+                  <button class="btn btn-primary" ng-if="cambiarPassForm.$valid" ng-click="cambiarPass()">Cambiar Pass</button>
+                  <button class="btn btn-primary" ng-if="!cambiarPassForm.$valid" disabled>Cambiar Pass</button>
+                  <button class="btn btn-info" ng-click="limpiar()">Limpiar campos</button>
+                </div>
+                <div class="col-sm-6">
+                </div>
+              </div>
+            </form>
+          </div>
+      </div>
+</div>

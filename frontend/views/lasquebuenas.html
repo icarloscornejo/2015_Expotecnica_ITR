@@ -1,0 +1,37 @@
+    <div class="row">
+        <div class="col-md-12">
+              <div class="row">
+                <div class="col-md-12">
+                  <br>
+                  <center>
+                    <h1><span class="label label-default">Las Que Buenas</span></h1>
+                  </center>
+                  <br>
+                </div>
+                    <div class="col-md-12" ng-repeat="x in response" >
+                        <md-whiteframe class="md-whiteframe-z5" layout style="background:white;">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <img class="imgBox img-responsive" src="data:image/png;base64,{{x.Foto}}">
+                                </div>
+                                <div class="col-sm-5">
+                                  <h2 class="text-left"><strong>{{x.Artista}}</strong></h2>
+                                  <h2 class="text-left"><strong>{{x.Titulo}}</strong></h2>
+                                  <h4 class="text-left">Posicion: {{x.Posicion}}</h4>
+                                </div>
+                                <div class="col-sm-3">
+                                  <br>
+                                  <iframe class="center-block" width="200" height="150" src="{{x.Url}}" frameborder="0"></iframe>
+                                  <br>
+                                </div>
+                            </div>
+                        </md-whiteframe>
+                        <br>
+                    </div>
+                </div>
+            <md-divider></md-divider>
+            <div id="fb-root"></div>
+            <div class="fb-comments center-block" style="background:white;" data-href="http://localhost/FRQB/#/lasquebuenas" data-width="800" data-numposts="5"></div>
+            <br>
+        </div>
+    </div>

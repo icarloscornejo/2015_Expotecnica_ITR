@@ -1,0 +1,113 @@
+<div class="row backgroundSideAll">
+      <div class="col-sm-12">
+        <h1>Las que buenas</h1>
+        <md-divider></md-divider>
+          <div class="table-responsive">
+            <form name="LasQueBuenasForm">
+              <br>
+              <div class="col-sm-6">
+                <md-input-container>
+                  <label>Titulo</label>
+                  <input type="text" ng-model="LasQueBuenas.Titulo" name="Titulo" ng-minlength="2" md-maxlength="50" pattern="[a-zA-Z]+( [a-zA-Z]+)*$" required>
+                  <div ng-show="LasQueBuenasForm.Titulo.$dirty" ng-messages="LasQueBuenasForm.Titulo.$error">
+                    <div ng-message="required">El titulo de la cancion es requerido.</div>
+                    <div ng-message="minlength && md-maxlength">El titulo debe de tener entre 2 y 25 caracteres.</div>
+                    <div ng-message="pattern">El titulo debe de tener solo letras.</div>
+                  </div>
+                </md-input-container>
+                <md-input-container>
+                  <label>Artista</label>
+                  <input type="text" ng-model="LasQueBuenas.Artista" name="Artista" ng-minlength="2" md-maxlength="50" pattern="[a-zA-Z]+( [a-zA-Z]+)*$" required>
+                  <div ng-show="LasQueBuenasForm.Artista.$dirty" ng-messages="LasQueBuenasForm.Artista.$error">
+                    <div ng-message="required">El artista de la cancion es requerido.</div>
+                    <div ng-message="minlength && md-maxlength">El artista debe de tener entre 2 y 50 caracteres.</div>
+                    <div ng-message="pattern">El artista debe de tener solo letras.</div>
+                  </div>
+                </md-input-container>
+                <md-input-container>
+                  <label>Url</label>
+                  <input id="Url" type="url" ng-model="LasQueBuenas.Url" name="Url" pattern="http://www\.youtube\.com\/(.+)|https://www\.youtube\.com\/(.+)" required>
+                  <div ng-show="LasQueBuenasForm.Url.$dirty" ng-messages="LasQueBuenasForm.Url.$error">
+                    <div ng-message="required">La URL de la cancion es requerido.</div>
+                    <div ng-message="pattern">La URL debe de ser de la cancion de YouTube</div>
+                  </div>
+                </md-input-container>
+                <br>
+              </div>
+              <div class="col-sm-6">
+                <img src="" class="imgBox" id="imagen">
+                <input type="file" accept=".jpg,.png" id="uploader"/>
+                <md-select placeholder="Posicion" ng-model="LasQueBuenas.Posicion" required>
+                  <md-option ng-repeat="x in posiciones" value="{{x.Posicion}}">{{x.Nombre}}</md-option>
+                </md-select>
+                <md-button href="application/php/lasquebuenas_r.php" target="_blank" class="md-raised md-primary center-block">
+                  <span>Reporte</span>
+                </md-button>
+                <br>
+              </div>
+              <div class="col-sm-12">
+                <div class="col-sm-6">
+                  <div class="col-sm-11">
+                    <div class="input-group">
+                      <span class="input-group-addon" id="basic-addon1">
+                          <md-icon md-font-library="material-icons">find_in_page</md-icon>
+                      </span>
+                      <input type="text" class="form-control" placeholder="Buscar por nombre" aria-describedby="basic-addon1" ng-model="Buscar" ng-keyup="buscar()">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <button class="btn btn-primary" ng-if="LasQueBuenasForm.$valid && canAdd" ng-click="agregar()">Agregar</button>
+                  <button class="btn btn-primary" ng-if="!LasQueBuenasForm.$valid && !canAdd || !LasQueBuenasForm.$valid && canAdd || LasQueBuenasForm.$valid && !canAdd" disabled>Agregar</button>
+                  <button class="btn btn-warning" ng-if="LasQueBuenasForm.$valid && canModify" ng-click="modificar()">Modificar</button>
+                  <button class="btn btn-warning" ng-if="!LasQueBuenasForm.$valid && !canModify || !LasQueBuenasForm.$valid && canModify || LasQueBuenasForm.$valid && !canModify" disabled>Modificar</button>
+                  <button class="btn btn-info" ng-click="limpiar()">Limpiar campos</button>
+                </div>
+              </div>
+              <div class="col-sm-12">
+                  <br>
+                  <div class="table-responsive">
+                    <table class="table table-hover table-condensed">
+                      <thead>
+                        <tr>
+                          <td><strong>Posicion</strong></td>
+                          <td><strong>Titulo</strong></td>
+                          <td><strong>Artista</strong></td>
+                          <td><strong>URL</strong></td>
+                          <td><strong>Foto</strong></td>
+                          <td><strong>Acciones</strong></td>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr ng-repeat="x in response | startFrom:currentPage*pageSize | limitTo:pageSize">
+                          <td>{{x.Posicion}}</td>
+                          <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;">{{x.Titulo}}</td>
+                          <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;">{{x.Artista}}</td>
+                          <td><iframe width="200" height="150" src="{{x.Url}}" frameborder="0"></iframe></td>
+                          <td><img class="imgBox" src="data:image/png;base64,{{x.Foto}}"/></td>
+                          <td>
+                            <button class="btn btn-danger" ng-click="eliminar(x.ID)">Eliminar</button>
+                            <button class="btn btn-warning" ng-click="editar(x.ID)">Editar</button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+              </div>
+            </form>
+            <div class="col-sm-12">
+              <p>{{currentPage+1}}/{{numberOfPages()}}</p>
+              <div class="col-xs-1">
+                <button class="btn btn-primary" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+                  Anterior
+                </button>
+              </div>
+              <div class="col-xs-1">
+                <button class="btn btn-primary" ng-disabled="currentPage >= response.length/pageSize - 1 || response == null" ng-click="currentPage=currentPage+1">
+                    Siguiente
+                </button>
+              </div>
+              </div>
+          </div>
+      </div>
+</div>

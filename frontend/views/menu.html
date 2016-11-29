@@ -1,0 +1,21 @@
+<md-dialog aria-label="Radio Que Buena">
+  <form>
+    <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>Radio Que Buena | Menu</h2>
+      <span flex></span>
+    </div>
+    </md-toolbar>
+    <md-dialog-content style="max-width:800px;max-height:810px; " ng-controller="menuCTRL">
+      <div class="row">
+        <div class="col-md-3" ng-repeat="x in menuitems">
+          <md-button class="md-grid-item-content center-block" href="{{x.pag}}" ng-click="close()">
+            <md-icon class="center-block" md-font-library="material-icons" style="color:#337ab7;font-size: 300%;">{{x.icono}}</md-icon>
+            <br>
+            <div class="md-grid-text" style="color:#337ab7;">{{x.texto}}</div>
+          </md-button>
+        </div>
+      </div>
+    </md-dialog-content>
+  </form>
+</md-dialog>

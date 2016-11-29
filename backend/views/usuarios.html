@@ -1,0 +1,81 @@
+<div class="row backgroundSideAll">
+      <div class="col-sm-12">
+        <h1>Usuarios</h1>
+        <md-divider></md-divider>
+          <div class="table-responsive">
+            <form name="UsuariosForm">
+              <br>
+                <div class="col-sm-6">
+                  <md-input-container>
+                    <input id="User" ng-model="Usuarios.User" placeholder="User" ng-minlength="2" md-maxlength="25" required>
+                  </md-input-container>
+                  <md-input-container>
+                    <input id="Pass" type="password" ng-model="Usuarios.Pass" placeholder="Pass *" ng-minlength="6" md-maxlength="25" required>
+                  </md-input-container>
+                  <md-input-container>
+                    <input id="Pass2" type="password" ng-model="Pass2" placeholder="Repita su pass *" ng-minlength="6" md-maxlength="25" required>
+                  </md-input-container>
+                  <br>
+                </div>
+                <div class="col-sm-6">
+                  <md-select placeholder="Tipos de usuario" ng-model="Usuarios.TipodeUsuarioID" required>
+                    <md-option ng-repeat="x in TiposdeUsuarios" value="{{x.ID}}">{{x.Nombre}}</md-option>
+                  </md-select>
+                  <md-select placeholder="Locutores" ng-model="Usuarios.LocutorID" required>
+                    <md-option ng-repeat="x in Locutores" value="{{x.ID}}">{{x.Nombre}} {{x.Apellido}}</md-option>
+                  </md-select>
+                  <md-divider></md-divider>
+                  <h6><strong>*Las contraseñas deben de contener al menos 6 caracteres, incluyendo letras mayusculas, minusculas y numeros.</strong></h6>s
+                  <md-divider></md-divider>
+                </div>
+                <div class="col-sm-12">
+                  <div class="col-sm-6">
+                    <div class="col-sm-11">
+                      <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">
+                          <md-icon md-font-library="material-icons">find_in_page</md-icon>
+                        </span>
+                        <input type="text" class="form-control" placeholder="Buscar por nombre" aria-describedby="basic-addon1" ng-model="Buscar" ng-keyup="buscar()">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <button class="btn btn-primary" ng-if="UsuariosForm.$valid && canAdd" ng-click="agregar()">Agregar</button>
+                    <button class="btn btn-primary" ng-if="!UsuariosForm.$valid && !canAdd || !UsuariosForm.$valid && canAdd || UsuariosForm.$valid && !canAdd" disabled>Agregar</button>
+                    <button class="btn btn-info" ng-click="limpiar()">Limpiar campos</button>
+                  </div>
+                </div>
+                <div class="col-sm-12">
+                  <br>
+                  <table class="table">
+                    <tr>
+                      <td><strong>User</strong></td>
+                      <td><strong>Logeado por ultima vez en:</strong></td>
+                      <td><strong>Accion</strong></td>
+                    </tr>
+                    <tr ng-repeat="x in response  | startFrom:currentPage*pageSize | limitTo:pageSize">
+                      <td>{{x.User}}</td>
+                      <td><img style="height: 200px;border: 1px solid #000;margin: 10px 5px 0 0;" src="https://maps.googleapis.com/maps/api/staticmap?center={{x.Latitud}},{{x.Longitud}}&markers=color:red%7Clabel:S%7C{{x.Latitud}},{{x.Longitud}}&zoom=15&size=200x200"/></td>
+                      <td>
+                        <button class="btn btn-danger" ng-click="eliminar(x.ID)">Eliminar</button>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+            </form>
+            <div class="col-sm-12">
+              <p>{{currentPage+1}}/{{numberOfPages()}}</p>
+              <div class="col-xs-1">
+                <button class="btn btn-primary" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+                  Anterior
+                </button>
+              </div>
+              <div class="col-xs-1">
+                <button class="btn btn-primary" ng-disabled="currentPage >= response.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+                    Siguiente
+                </button>
+              </div>
+            </div>
+          </div>
+      </div>
+</div>

@@ -1,0 +1,116 @@
+
+/* MAIN */
+
+.loginbody{
+    background-image: url("../images/fondologin.png");
+    background-attachment: fixed;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+/* END MAIN */
+/* VIEWS */
+
+.textito{
+    color: #ffffff;
+}
+
+.artistaLQB{
+    color: #56ff41;
+}
+
+.C{
+    text-align: center;
+    color:#f9f2f4;
+}
+
+.backgroundAll{
+    background: #e9edf2;
+}
+
+.backgroundSideAll{
+    background: #F1F4F9;
+}
+
+.menuSide{
+    background: #34425A;
+}
+
+.imgBox{
+    height: 100px;
+    width: 100px;
+    border: 1px solid #000;
+    margin: 10px 5px 0 0;
+}
+
+.imgBoxmini{
+    height: 50px;
+    border: 1px solid #000;
+    margin: 10px 5px 0 0;
+}
+
+.etiquetaEspacio{
+    background: #22baa0;
+}
+
+.etiquetaTitulo{
+    color: #fff;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 60px;
+    padding: 0 15px;
+    vertical-align: middle;
+    display: table-cell;
+    text-align: center;
+}
+
+.etiquetaSesion{
+    color: #fff;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: left;
+}
+
+.paginaEspacio{
+    background: #fff;
+}
+
+.paginaTitulo{
+    color: #5f5f5f;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 60px;
+    padding: 0 15px;
+    vertical-align: middle;
+    display: table-cell;
+    text-align: center;
+}
+
+.menuObjeto{
+    color: #fff;
+    font-size: 14px;
+    font-weight: 200;
+    line-height: 23px;
+    padding: 0 15px;
+    vertical-align: middle;
+    display: table-cell;
+    text-align: left;
+}
+
+.logTitulo{
+    color: #5f5f5f;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 60px;
+    padding: 0 15px;
+    vertical-align: middle;
+    display: table-cell;
+    text-align: right;
+}
+
+.icono{
+  display: inline-block;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+/* END VIEWS */

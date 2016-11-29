@@ -1,0 +1,75 @@
+<div class="row backgroundSideAll">
+      <div class="col-sm-12">
+        <h1>Dias</h1>
+        <md-divider></md-divider>
+          <div class="table-responsive">
+            <form name="DiasForm">
+              <br>
+                <div class="col-sm-6">
+                  <md-input-container>
+                    <label>Nombre</label>
+                    <input type="text" ng-model="Dias.Nombre" name="Nombre" ng-minlength="5" md-maxlength="25" pattern="[a-zA-Z]+( [a-zA-Z]+)*$" required>
+                    <div ng-show="DiasForm.Nombre.$dirty" ng-messages="DiasForm.Nombre.$error">
+                      <div ng-message="required">El nombre del dia es requerido.</div>
+                      <div ng-message="minlength && md-maxlength">El nombre debe de tener entre 5 y 25 caracteres.</div>
+                      <div ng-message="pattern">El nombre debe de tener solo letras.</div>
+                    </div>
+                  </md-input-container>
+                  <br>
+                </div>
+                <div class="col-sm-6">
+                  <md-button href="application/php/dias_r.php" target="_blank" class="md-raised md-primary center-block">
+                  <span>Reporte</span>
+                </md-button>
+                </div>
+                <div class="col-sm-12">
+                  <div class="col-sm-6">
+                    <div class="col-sm-11">
+                      <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">
+                          <md-icon md-font-library="material-icons">find_in_page</md-icon>
+                        </span>
+                        <input type="text" class="form-control" placeholder="Buscar por nombre" aria-describedby="basic-addon1" ng-model="Buscar" ng-keyup="buscar()">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <button class="btn btn-primary" ng-if="DiasForm.$valid && canAdd" ng-click="agregar()">Agregar</button>
+                    <button class="btn btn-primary" ng-if="!DiasForm.$valid && !canAdd || !DiasForm.$valid && canAdd || DiasForm.$valid && !canAdd" disabled>Agregar</button>
+                    <button class="btn btn-warning" ng-if="DiasForm.$valid && canModify" ng-click="modificar()">Modificar</button>
+                    <button class="btn btn-warning" ng-if="!DiasForm.$valid && !canModify || !DiasForm.$valid && canModify || DiasForm.$valid && !canModify" disabled>Modificar</button>
+                    <button class="btn btn-info" ng-click="limpiar()">Limpiar campos</button>
+                  </div>
+                </div>
+                <div class="col-sm-12">
+                  <br>
+                  <table class="table">
+                    <tr>
+                      <td><strong>Nombre</strong></td>
+                    </tr>
+                    <tr ng-repeat="x in response  | startFrom:currentPage*pageSize | limitTo:pageSize">
+                      <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;">{{x.Nombre}}</td>
+                      <td>
+                        <button class="btn btn-danger" ng-click="eliminar(x.ID)">Eliminar</button>
+                        <button class="btn btn-warning" ng-click="editar(x.ID)">Editar</button>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+            </form>
+            <div class="col-sm-12">
+              <p>{{currentPage+1}}/{{numberOfPages()}}</p>
+              <div class="col-xs-1">
+                <button class="btn btn-primary" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+                  Anterior
+                </button>
+              </div>
+              <div class="col-xs-1">
+                <button class="btn btn-primary" ng-disabled="currentPage >= response.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+                    Siguiente
+                </button>
+              </div>
+            </div>
+          </div>
+      </div>
+</div>

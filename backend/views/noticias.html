@@ -1,0 +1,89 @@
+<div class="row backgroundSideAll">
+      <div class="col-sm-12">
+        <h1>Noticias</h1>
+        <md-divider></md-divider>
+          <div class="table-responsive">
+            <form name="NoticiasForm">
+              <br>
+              <div class="col-sm-6">
+                <md-input-container>
+                  <label>Titulo</label>
+                  <input type="text" ng-model="Noticias.Titulo" name="Titulo" ng-minlength="5" md-maxlength="50" pattern="[a-zA-Z]+( [a-zA-Z]+)*$" required>
+                  <div ng-show="NoticiasForm.Titulo.$dirty" ng-messages="NoticiasForm.Titulo.$error">
+                    <div ng-message="required">El titulo de la noticia es requerido.</div>
+                    <div ng-message="minlength && md-maxlength">El titulo debe de tener entre 5 y 50 caracteres.</div>
+                    <div ng-message="pattern">El titulo debe de tener solo letras.</div>
+                  </div>
+                </md-input-container>
+                <md-input-container>
+                  <label>Descripcion</label>
+                  <input type="text" ng-model="Noticias.Descripcion" name="Descripcion" ng-minlength="5" md-maxlength="250" pattern="[a-zA-Z]+( [a-zA-Z]+)*$" required>
+                  <div ng-show="NoticiasForm.Descripcion.$dirty" ng-messages="NoticiasForm.Descripcion.$error">
+                    <div ng-message="required">La descripcion de la noticia es requerida.</div>
+                    <div ng-message="minlength && md-maxlength">La descripcion debe de tener entre 5 y 250 caracteres.</div>
+                    <div ng-message="pattern">La descripcion debe de tener solo letras.</div>
+                  </div>
+                </md-input-container>
+                <br>
+              </div>
+              <div class="col-sm-6">
+                <img src="" class="imgBox" id="imagen">
+                <input type="file" accept=".jpg,.png" id="uploader"/>
+                <br>
+              </div>
+              <div class="col-sm-12">
+                <div class="col-sm-6">
+                  <div class="col-sm-11">
+                    <div class="input-group">
+                      <span class="input-group-addon" id="basic-addon1">
+                          <md-icon md-font-library="material-icons">find_in_page</md-icon>
+                      </span>
+                      <input type="text" class="form-control" placeholder="Buscar por nombre" aria-describedby="basic-addon1" ng-model="Buscar" ng-keyup="buscar()">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <button class="btn btn-primary" ng-if="NoticiasForm.$valid && canAdd" ng-click="agregar()">Agregar</button>
+                  <button class="btn btn-primary" ng-if="!NoticiasForm.$valid && !canAdd || !NoticiasForm.$valid && canAdd || NoticiasForm.$valid && !canAdd" disabled>Agregar</button>
+                  <button class="btn btn-warning" ng-if="NoticiasForm.$valid && canModify" ng-click="modificar()">Modificar</button>
+                  <button class="btn btn-warning" ng-if="!NoticiasForm.$valid && !canModify || !NoticiasForm.$valid && canModify || NoticiasForm.$valid && !canModify" disabled>Modificar</button>
+                  <button class="btn btn-info" ng-click="limpiar()">Limpiar campos</button>
+                </div>
+              </div>
+              <div class="col-sm-12">
+                  <br>
+                  <table class="table">
+                    <tr>
+                      <td><strong>Titulo</strong></td>
+                      <td><strong>Descripcion</strong></td>
+                      <td><strong>Foto</strong></td>
+                      <td><strong>Acciones</strong></td>
+                    </tr>
+                    <tr ng-repeat="x in response | startFrom:currentPage*pageSize | limitTo:pageSize">
+                      <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;">{{x.Titulo}}</td>
+                      <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;">{{x.Descripcion}}</td>
+                      <td><img class="imgBox" src="data:image/png;base64,{{x.Foto}}"/></td>
+                      <td>
+                        <button class="btn btn-danger" ng-click="eliminar(x.ID)">Eliminar</button>
+                        <button class="btn btn-warning" ng-click="editar(x.ID)">Editar</button>
+                      </td>
+                    </tr>
+                  </table>
+              </div>
+            </form>
+            <div class="col-sm-12">
+              <p>{{currentPage+1}}/{{numberOfPages()}}</p>
+              <div class="col-xs-1">
+                <button class="btn btn-primary" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+                  Anterior
+                </button>
+              </div>
+              <div class="col-xs-1">
+                <button class="btn btn-primary" ng-disabled="currentPage >= response.length/pageSize - 1 || response == null" ng-click="currentPage=currentPage+1">
+                    Siguiente
+                </button>
+              </div>
+              </div>
+          </div>
+      </div>
+</div>

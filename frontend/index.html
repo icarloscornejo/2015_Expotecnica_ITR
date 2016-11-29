@@ -1,0 +1,205 @@
+<html ng-app="FRQB">
+<head lang="es">
+
+    <meta charset="UTF-8">
+    <title>Radio Que Buena 88.9 FM "Aquí suena la Que Buena"</title>
+
+    <!-- Meta -->
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+
+    <!-- CSS Externos -->
+    <link rel="stylesheet" href="resources/libs/angular-material/angular-material.css"/>
+    <link rel="stylesheet" href="resources/libs/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="resources/libs/bootstrap/dist/css/bootstrap-theme.css"/>
+    <link rel="stylesheet" href="resources/libs/angular/angular-font.css"/>
+    <link rel="stylesheet" href="resources/libs/angular-material-icons/angular-material-font-icons.css"/>
+
+    <!-- CSS Propio -->
+    <link rel="stylesheet" href="resources/styles/style.css"/>
+
+</head>
+<body ng-controller="appCTRL" style="padding-top: 75px;">
+<section class="allfont">
+    <div class="row allbody">
+        <div class="col-lg-12">
+            <nav class="navbar navbar-default navbar-fixed-top">
+                <div class="row" style="background:black;">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10" style="color:white;">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <div class="row">
+                                    <div class="col-xs-1 text-right">
+                                        <ng-md-icon icon="phone" style="fill: white"></ng-md-icon>
+                                    </div>
+                                    <div class="col-xs-10 text-left">
+                                        (503) 2223-0171
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-8"></div>
+                            <div class="col-sm-2">
+                                <div class="row">
+                                    <a href="https://www.facebook.com/quebuena88.9sv" style="color:white;" target="_blank">
+                                        <div class="col-xs-1 text-right">
+                                            <ng-md-icon icon="facebook-box" style="fill: white"></ng-md-icon>
+                                        </div>
+                                        <div class="col-xs-10 text-left">
+                                            Radio QueBuena
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10">
+                        <div class="container-fluid">
+                            <!-- Brand and toggle get grouped for better mobile display -->
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <md-icon style="color:#E5002A;" class="center-block" md-font-library="material-icons">menu</md-icon>
+                                </button>
+                                <a href="#/">
+                                    <img alt="Brand" src="resources/images/logo2.png" class="img-responsive">
+                                </a>
+                            </div>
+
+                            <!-- Collect the nav links, forms, and other content for toggling -->
+                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" ng-controller="menuCTRL">
+                                <ul class="nav navbar-nav">
+                                    <li ng-repeat="x in menuitems">
+                                        <a href="{{x.pag}}" style="color:#E5002A;">
+                                            <div class="row">
+                                                <div class="col-xs-1">
+                                                    <ng-md-icon icon="{{x.icono}}" class="center-block" style="fill: #E5002A"></ng-md-icon>
+                                                </div>
+                                                <div class="col-xs-9 center-block">
+                                                    <strong>{{x.texto}}</strong>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#/radio" onclick="window.open('radio', 'newwindow', 'width=350, height=550'); return false;" style="color:#E5002A;">
+                                            <div class="row">
+                                                <div class="col-xs-1">
+                                                    <ng-md-icon icon="video_collection" class="center-block" style="fill: #E5002A"></ng-md-icon>
+                                                </div>
+                                                <div class="col-xs-9 center-block">
+                                                    <strong>RADIO EN LINEA</strong>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div><!-- /.navbar-collapse -->
+                        </div><!-- /.container-fluid -->
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+            </nav>
+            <div class="row">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-10 allbg">
+                    <div class="row">
+                        <img alt="RadioQueBuena" class="img-responsive" src="resources/images/banner.png"/>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-9">
+                            <div layout="column" layout-fill style="padding-bottom: 32px;">
+                                <md-whiteframe class="md-whiteframe-z5" layout layout-align="center center">
+                                    <br>
+                                    <div class="row">                                        
+                                        <div class="col-sm-12 articlearea" ui-view></div>
+                                    </div>
+                                    <br>
+                                </md-whiteframe>
+                            </div>
+                        </div>                            
+                        <div class="col-md-3">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="fb-page" data-href="https://www.facebook.com/quebuena88.9sv" data-width="300" data-height="500" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/quebuena88.9sv"><a href="https://www.facebook.com/quebuena88.9sv">Radio QueBuena</a></blockquote></div></div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <img alt="RadioQueBuena_Online" class="img-responsive center-block img-circle" src="resources/images/online.png"/>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-xs-12 text-center">
+                                            <a href="">
+                                                <button class="btn btn-primary" type="button" onclick="window.open('radio', 'newwindow', 'width=1000, height=400'); return false;">
+                                                    <i class="glyphicon glyphicon-play"></i>
+                                                    ¡Radio en vivo!
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+                <div class="col-lg-1"></div>
+                <br>
+            </div>
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                    <img alt="RadioQueBuena" class="img-responsive center-block" src="resources/images/footer.png"/>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+            <!-- <div class="row footerInfo">
+                <div class="col-md-1"></div>
+                <div class="col-md-10" style="color:#aeaeae;">
+                    JAJAJAJAJA
+                </div>
+                <div class="col-md-1"></div>
+            </div> -->
+        </div>
+        <br>
+    </div>
+</section>
+
+<!-- Librerias -->
+  <script src="resources/libs/jquery/jquery.min.js"></script>
+  <script src="resources/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="resources/libs/angular/angular.min.js"></script>
+  <script src="resources/libs/angular-animate/angular-animate.min.js"></script>
+  <script src="resources/libs/angular-aria/angular-aria.min.js"></script>
+  <script src="resources/libs/angular-material/angular-material.min.js"></script>
+  <script src="resources/libs/angular-ui-route/angular-ui-router.min.js"></script>
+  <script src="resources/libs/angular-material-icons/angular-material-icons.min.js"></script>
+  <script src="radio/muses.js"></script>
+
+
+<!-- Controladores -->
+  <script src="application/app.js"></script>
+  <script src="application/controllers/main.js"></script>
+  <script src="application/controllers/lasquebuenas.js"></script>
+  <script src="application/controllers/locutores.js"></script>
+  <script src="application/controllers/programacion.js"></script>
+  <script src="application/controllers/radioenlinea.js"></script>
+  <script src="application/controllers/autores.js"></script>
+  <script src="application/controllers/login.js"></script>
+  <script src="application/controllers/registrarse.js"></script>
+  <script src="application/controllers/cerrarsesion.js"></script>
+  <script src="application/controllers/cambiarpass.js"></script>
+  
+</body>
+</html>

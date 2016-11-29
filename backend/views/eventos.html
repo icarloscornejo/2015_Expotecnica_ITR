@@ -1,0 +1,103 @@
+<div class="row backgroundSideAll">
+      <div class="col-sm-12">
+        <h1>Eventos</h1>
+        <md-divider></md-divider>
+          <div class="table-responsive">
+            <form name="EventosForm">
+              <br>
+              <div class="col-sm-6">
+                <md-input-container>
+                  <label>Nombre</label>
+                  <input type="text" ng-model="Eventos.Nombre" name="Nombre" ng-minlength="5" md-maxlength="50" pattern="[a-zA-Z]+( [a-zA-Z]+)*$" required>
+                  <div ng-show="EventosForm.Nombre.$dirty" ng-messages="EventosForm.Nombre.$error">
+                    <div ng-message="required">El nombre del evento es requerido.</div>
+                    <div ng-message="minlength && md-maxlength">El nombre debe de tener entre 5 y 50 caracteres.</div>
+                    <div ng-message="pattern">El nombre debe de tener solo letras.</div>
+                  </div>
+                </md-input-container>
+                <md-input-container>
+                  <label>Descripcion</label>
+                  <input type="text" ng-model="Eventos.Descripcion" name="Descripcion" ng-minlength="5" md-maxlength="250" pattern="[a-zA-Z]+( [a-zA-Z]+)*$" required>
+                  <div ng-show="EventosForm.Descripcion.$dirty" ng-messages="EventosForm.Descripcion.$error">
+                    <div ng-message="required">La descripcion del evento es requerida.</div>
+                    <div ng-message="minlength && md-maxlength">La descripcion debe de tener entre 5 y 250 caracteres.</div>
+                    <div ng-message="pattern">La descripcion debe de tener solo letras.</div>
+                  </div>
+                </md-input-container>
+                <md-button href="application/php/eventos_r.php" target="_blank" class="md-raised md-primary center-block">
+                  <span>Reporte</span>
+                </md-button>
+                <br>
+              </div>
+              <div class="col-sm-6">
+                <md-input-container>
+                  <label>Lugar</label>
+                  <input type="text" ng-model="Eventos.Lugar" name="Lugar" ng-minlength="5" md-maxlength="50" pattern="[a-zA-Z]+( [a-zA-Z]+)*$" required>
+                  <div ng-show="EventosForm.Lugar.$dirty" ng-messages="EventosForm.Lugar.$error">
+                    <div ng-message="required">El lugar del evento es requerido.</div>
+                    <div ng-message="minlength && md-maxlength">El lugar debe de tener entre 5 y 25 caracteres.</div>
+                    <div ng-message="pattern">El lugar debe de tener solo letras.</div>
+                  </div>
+                </md-input-container>
+                <img src="" class="imgBox" id="imagen">
+                <input type="file" accept=".jpg,.png" id="uploader"/>
+                <br>
+              </div>
+              <div class="col-sm-12">
+                <div class="col-sm-6">
+                  <div class="col-sm-11">
+                    <div class="input-group">
+                      <span class="input-group-addon" id="basic-addon1">
+                          <md-icon md-font-library="material-icons">find_in_page</md-icon>
+                      </span>
+                      <input type="text" class="form-control" placeholder="Buscar por nombre" aria-describedby="basic-addon1" ng-model="Buscar" ng-keyup="buscar()">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <button class="btn btn-primary" ng-if="EventosForm.$valid && canAdd" ng-click="agregar()">Agregar</button>
+                  <button class="btn btn-primary" ng-if="!EventosForm.$valid && !canAdd || !EventosForm.$valid && canAdd || EventosForm.$valid && !canAdd" disabled>Agregar</button>
+                  <button class="btn btn-warning" ng-if="EventosForm.$valid && canModify" ng-click="modificar()">Modificar</button>
+                  <button class="btn btn-warning" ng-if="!EventosForm.$valid && !canModify || !EventosForm.$valid && canModify || EventosForm.$valid && !canModify" disabled>Modificar</button>
+                  <button class="btn btn-info" ng-click="limpiar()">Limpiar campos</button>
+                </div>
+              </div>
+              <div class="col-sm-12">
+                  <br>
+                  <table class="table">
+                    <tr>
+                      <td><strong>Nombre</strong></td>
+                      <td><strong>Descripcion</strong></td>
+                      <td><strong>Lugar</strong></td>
+                      <td><strong>Foto</strong></td>
+                      <td><strong>Acciones</strong></td>
+                    </tr>
+                    <tr ng-repeat="x in response | startFrom:currentPage*pageSize | limitTo:pageSize">
+                      <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;">{{x.Nombre}}</td>
+                      <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;">{{x.Descripcion}}</td>
+                      <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;">{{x.Lugar}}</td>
+                      <td><img class="imgBox" src="data:image/png;base64,{{x.Foto}}"/></td>
+                      <td>
+                        <button class="btn btn-danger" ng-click="eliminar(x.ID)">Eliminar</button>
+                        <button class="btn btn-warning" ng-click="editar(x.ID)">Editar</button>
+                      </td>
+                    </tr>
+                  </table>
+              </div>
+            </form>
+            <div class="col-sm-12">
+              <p>{{currentPage+1}}/{{numberOfPages()}}</p>
+              <div class="col-xs-1">
+                <button class="btn btn-primary" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+                  Anterior
+                </button>
+              </div>
+              <div class="col-xs-1">
+                <button class="btn btn-primary" ng-disabled="currentPage >= response.length/pageSize - 1 || response == null" ng-click="currentPage=currentPage+1">
+                    Siguiente
+                </button>
+              </div>
+              </div>
+          </div>
+      </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-lg-12">
+    <form>
+      <div class="col-lg-6"></div>
+      <div class="col-lg-2">
+        <div class="input-group">
+              <md-input-container>
+                <label style="color: white;">Usuario</label>
+                <input style="color: white;" ng-model="Usuario">
+              </md-input-container>
+        </div>
+      </div>
+      <div class="col-lg-2">
+        <div class="input-group">
+          <md-input-container>
+            <label style="color: white;">Pass</label>
+            <input style="color: white;" ng-model="Pass" type="password">
+          </md-input-container>
+          <a ng-click="recovery()">Olvide mi contraseña</a>
+        </div>
+      </div>
+      <div class="col-lg-1">
+        <br>
+        <md-button ng-click="login()" class="md-raised md-primary center-block">
+          <md-icon md-font-library="material-icons">verified_user</md-icon>
+          <span>Login</span>
+        </md-button>
+      </div>
+    </form>
+  </div>
+</div>

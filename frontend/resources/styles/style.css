@@ -1,0 +1,72 @@
+
+/* MAIN */
+
+.allbody{
+    background-image: url("../images/fondo.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.allbg{
+    background: #ececec;
+}
+
+.topbarbtn{
+    font-size: 20px;
+    background: #ececec;
+}
+
+.topbarbtnpic{
+    font-size: 20px;
+    color: #7c8695;
+}
+
+.footerInfo{
+    background: linear-gradient(to bottom, #000000 0%,#5d6165 100%);
+    background-image: linear-gradient(rgb(0, 0, 0) 0%, rgb(93, 97, 101) 100%);
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: initial;
+}
+
+#menuModal{
+    right:60%;
+}
+
+.articlearea{
+    background: #364153;
+}
+
+/* END MAIN */
+/* VIEWS */
+
+.textito{
+    color: #ffffff;
+}
+
+.artistaLQB{
+    color: #56ff41;
+}
+
+.C{
+    text-align: center;
+    color:#f9f2f4;
+}
+
+.imgBox{
+    height: 150px;
+    width: 150px;
+}
+
+.radioBox{
+    height: 200px;
+    width: 200px;
+}
+
+/* END VIEWS */

@@ -1,0 +1,130 @@
+<html ng-app="RRQB">
+<head lang="es">
+
+    <meta charset="UTF-8">
+    <title>En vivo | Radio Que Buena 88.9 FM</title>
+
+    <!-- Meta -->
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+
+    <!-- CSS Externos -->
+    <link rel="stylesheet" href="../resources/libs/angular-material/angular-material.css"/>
+    <link rel="stylesheet" href="../resources/libs/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="../resources/libs/bootstrap/dist/css/bootstrap-theme.css"/>
+    <link rel="stylesheet" href="../resources/libs/angular/angular-font.css"/>
+    <link rel="stylesheet" href="../resources/libs/angular-material-icons/angular-material-font-icons.css"/>
+
+</head>
+<body ng-controller="appCTRL" style="background:black;">
+    <div class="row" style="background:black;">
+        <div class="col-lg-12">
+            <br>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-8">                            
+                            <center>
+                                <img src="application/LogoLQB.png" class="img-responsive">
+                            </center>
+                        </div>
+                        <div class="col-sm-2"></div>
+                    </div>
+                    <br>
+                    <center>
+                        <h3 style="color:white;"><strong>{{titulo}}</strong></h3>
+                        <h4 style="color:white;"><strong>{{hora}}</strong></h4>
+                    </center>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-2">
+                            <center>
+                                <audio id="player" src="http://192.168.16.244:8000/RadioQueBuena" autoplay>
+                                    <p>Tu navegador no implementa el elemento audio</p>
+                                </audio>
+                                <md-button class="md-fab md-primary" aria-label="Control" ng-click="PP()">
+                                    <ng-md-icon icon="{{action}}" class="center-block" style="fill: white;"></ng-md-icon>
+                                </md-button>
+                            </center>
+                            <br>
+                            <!-- <div class="row">
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-8">                            
+                                    <script type="text/javascript" src="http://geoloc4.whoaremyfriends.net/private/geocounter.js?compte=425653648357"></script>
+                                </div>
+                                <div class="col-sm-2"></div>
+                            </div> -->
+                        </div>
+                        <div class="col-sm-7">
+                            <md-slider flex id="Volumen" ng-model="Volumen" ng-change="setVolume()" step="1" min="0" max="100" aria-label="Volumen">
+                            </md-slider>
+                            <div class="row">
+                                <div class="col-xs-2"></div>
+                                <div class="col-xs-2">
+                                    <ng-md-icon icon="volume_up" class="center-block" style="fill: white;"></ng-md-icon>
+                                </div>
+                                <div class="col-xs-8">
+                                    <p style="color:white;">
+                                        Volumen: {{Volumen}}
+                                    </p>
+                                </div>
+                            </div>
+                            <md-divider></md-divider>
+                        </div>
+                        <div class="col-sm-1"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-2"></div>
+                        <div class="col-xs-2">
+                            <md-button class="md-fab md-mini md-primary" aria-label="Recargar" ng-click="recargar()">
+                                <ng-md-icon icon="autorenew" class="center-block" style="fill: white;"></ng-md-icon>
+                            </md-button>
+                        </div>
+                        <div class="col-xs-8">
+                            <p style="color:white;">
+                                <br>
+                                Recargar streaming
+                            </p>
+                        </div>
+                    </div>
+
+                    <br>
+                </div>
+                <div class="col-md-5">
+                    <img src="{{image}}" class="img-responsive">
+                </div>
+                <div class="col-md-3">
+                    <table class="table">
+                      <tr>
+                        <td>
+                            <h4 style="color:#FF4081;"><strong>Recien escuchadas..</strong></h4>
+                        </td>
+                      </tr>
+                      <tr ng-repeat="x in response | limitTo:5">
+                        <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;color:white;">
+                            <p><strong>{{x.Nombre}}</strong></p>
+                            <p>Puesta en: {{x.Fecha}}</p>
+                        </td>
+                      </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Librerias -->
+    <script src="../resources/libs/jquery/jquery.min.js"></script>
+    <script src="../resources/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../resources/libs/angular/angular.min.js"></script>
+    <script src="../resources/libs/angular-animate/angular-animate.min.js"></script>
+    <script src="../resources/libs/angular-aria/angular-aria.min.js"></script>
+    <script src="../resources/libs/angular-material/angular-material.min.js"></script>
+    <script src="../resources/libs/angular-material-icons/angular-material-icons.min.js"></script>
+
+
+    <!-- Controladores -->
+    <script src="application/app.js"></script> 
+</body>
+</html>

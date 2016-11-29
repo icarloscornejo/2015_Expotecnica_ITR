@@ -1,0 +1,34 @@
+<div class="row backgroundSideAll">
+      <div class="col-sm-12">
+        <h1>Cambiar contraseña</h1>
+        <md-divider></md-divider>
+          <div class="table-responsive">
+            <form name="cambiarPassForm">
+              <br>
+              <div class="col-sm-6">
+                <md-input-container>
+                  <input type="password" ng-model="PassAntigua" placeholder="Antigua contraseña" required autofocus>
+                </md-input-container>
+                <md-input-container>
+                  <input type="password" ng-model="usuarios.Pass" placeholder="Nueva contraseña" required>
+                </md-input-container>
+                <md-input-container>
+                  <input type="password" ng-model="Pass2" placeholder="Repita su contraseña" required>
+                </md-input-container>
+                <br>
+              </div>
+              <div class="col-sm-6">
+              </div>
+              <div class="col-sm-12">
+                <div class="col-sm-6">
+                  <button class="btn btn-primary" ng-if="cambiarPassForm.$valid" ng-click="cambiarPass()">Cambiar Pass</button>
+                  <button class="btn btn-primary" ng-if="!cambiarPassForm.$valid" disabled>Cambiar Pass</button>
+                  <button class="btn btn-info" ng-click="limpiar()">Limpiar campos</button>
+                </div>
+                <div class="col-sm-6">
+                </div>
+              </div>
+            </form>
+          </div>
+      </div>
+</div>

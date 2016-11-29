@@ -1,0 +1,27 @@
+    <div class="row">
+        <div class="col-md-12">
+            <h3 style="color:white;">A continuacion se presentan los locutores de la Radio Que Buena:</h3>
+            <br>
+        	<div class="row">
+                <div class="col-md-12" ng-repeat="x in response" >
+                    <md-whiteframe class="md-whiteframe-z5" layout style="background:white;">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <img class="imgBox img-responsive" src="data:image/png;base64,{{x.Foto}}"/>
+                            </div>
+                            <div class="col-sm-7">
+                                <div ng-show="x.Apodo != '' ">
+                                    <h2><strong>{{x.Nombre}} {{x.Apellido}}</strong></h2>
+                                    <h4>"{{x.Apodo}}"</h4>
+                                </div>
+                                <div ng-show="x.Apodo == '' ">
+                                    <h2><strong>{{x.Nombre}} {{x.Apellido}}</strong></h2>
+                                </div>
+                            </div>
+                        </div>
+                    </md-whiteframe>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>

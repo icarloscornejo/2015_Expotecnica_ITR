@@ -1,0 +1,90 @@
+<div class="row backgroundSideAll">
+      <div class="col-sm-12">
+        <h1>Programas</h1>
+        <md-divider></md-divider>
+          <div class="table-responsive">
+            <form name="ProgramasForm">
+              <br>
+                <div class="col-sm-6">
+                  <md-input-container>
+                    <label>Nombre</label>
+                    <input type="text" ng-model="Programas.Nombre" name="Nombre" ng-minlength="5" md-maxlength="50" pattern="[a-zA-Z]+( [a-zA-Z]+)*$" required>
+                    <div ng-show="ProgramasForm.Nombre.$dirty" ng-messages="ProgramasForm.Nombre.$error">
+                      <div ng-message="required">El nombre del programa es requerido.</div>
+                      <div ng-message="minlength && md-maxlength">El nombre debe de tener entre 5 y 50 caracteres.</div>
+                      <div ng-message="pattern">El nombre debe de tener solo letras.</div>
+                    </div>
+                  </md-input-container>
+                  <md-input-container>
+                    <label>Horario</label>
+                    <input type="text" ng-model="Programas.Horario" name="Horario" ng-minlength="5" md-maxlength="50" required>
+                    <div ng-show="ProgramasForm.Horario.$dirty" ng-messages="ProgramasForm.Horario.$error">
+                      <div ng-message="required">El horario del programa es requerido.</div>
+                      <div ng-message="minlength && md-maxlength">El horario debe de tener entre 5 y 50 caracteres.</div>
+                    </div>
+                  </md-input-container>
+                  <br>
+                </div>
+                <div class="col-sm-6">
+                  <md-select placeholder="Dias" ng-model="Programas.DiaID" required>
+                    <md-option ng-repeat="x in Dias" value="{{x.ID}}">{{x.Nombre}}</md-option>
+                  </md-select>
+                  <md-button href="application/php/programas_r.php" target="_blank" class="md-raised md-primary center-block">
+                  <span>Reporte</span>
+                </md-button>
+                </div>
+                <div class="col-sm-12">
+                  <div class="col-sm-6">
+                    <div class="col-sm-11">
+                      <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">
+                          <md-icon md-font-library="material-icons">find_in_page</md-icon>
+                        </span>
+                        <input type="text" class="form-control" placeholder="Buscar por nombre" aria-describedby="basic-addon1" ng-model="Buscar" ng-keyup="buscar()">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <button class="btn btn-primary" ng-if="ProgramasForm.$valid && canAdd" ng-click="agregar()">Agregar</button>
+                    <button class="btn btn-primary" ng-if="!ProgramasForm.$valid && !canAdd || !ProgramasForm.$valid && canAdd || ProgramasForm.$valid && !canAdd" disabled>Agregar</button>
+                    <button class="btn btn-warning" ng-if="ProgramasForm.$valid && canModify" ng-click="modificar()">Modificar</button>
+                    <button class="btn btn-warning" ng-if="!ProgramasForm.$valid && !canModify || !ProgramasForm.$valid && canModify || ProgramasForm.$valid && !canModify" disabled>Modificar</button>
+                    <button class="btn btn-info" ng-click="limpiar()">Limpiar campos</button>
+                  </div>
+                </div>
+                <div class="col-sm-12">
+                  <br>
+                  <table class="table">
+                    <tr>
+                      <td><strong>Nombre</strong></td>
+                      <td><strong>Horario</strong></td>
+                      <td><strong>Dias</strong></td>
+                    </tr>
+                    <tr ng-repeat="x in response  | startFrom:currentPage*pageSize | limitTo:pageSize">
+                      <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;">{{x.Nombre}}</td>
+                      <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;">{{x.Horario}}</td>
+                      <td>{{x.Dias}}</td>
+                      <td>
+                        <button class="btn btn-danger" ng-click="eliminar(x.ID)">Eliminar</button>
+                        <button class="btn btn-warning" ng-click="editar(x.ID)">Editar</button>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+            </form>
+            <div class="col-sm-12">
+              <p>{{currentPage+1}}/{{numberOfPages()}}</p>
+              <div class="col-xs-1">
+                <button class="btn btn-primary" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+                  Anterior
+                </button>
+              </div>
+              <div class="col-xs-1">
+                <button class="btn btn-primary" ng-disabled="currentPage >= response.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+                    Siguiente
+                </button>
+              </div>
+            </div>
+          </div>
+      </div>
+</div>

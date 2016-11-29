@@ -1,0 +1,113 @@
+<div class="row backgroundSideAll">
+      <div class="col-sm-12">
+        <h1>Locutores</h1>
+        <md-divider></md-divider>
+          <div class="table-responsive">
+            <form name="LocutoresForm">
+              <br>
+              <div class="col-sm-6">
+                <md-input-container>
+                  <label>Nombre</label>
+                  <input type="text" ng-model="Locutores.Nombre" name="Nombre" ng-minlength="2" md-maxlength="25" pattern="[a-zA-Z]+( [a-zA-Z]+)*$" required>
+                  <div ng-show="LocutoresForm.Nombre.$dirty" ng-messages="LocutoresForm.Nombre.$error">
+                    <div ng-message="required">El nombre del locutor es requerido.</div>
+                    <div ng-message="minlength && md-maxlength">El nombre debe de tener entre 2 y 25 caracteres.</div>
+                    <div ng-message="pattern">El nombre debe de tener solo letras.</div>
+                  </div>
+                </md-input-container>
+                <md-input-container>
+                  <label>Apellido</label>
+                  <input type="text" ng-model="Locutores.Apellido" name="Apellido" ng-minlength="2" md-maxlength="25" pattern="[a-zA-Z]+( [a-zA-Z]+)*$" required>
+                  <div ng-show="LocutoresForm.Apellido.$dirty" ng-messages="LocutoresForm.Apellido.$error">
+                    <div ng-message="required">El apellido del locutor es requerido.</div>
+                    <div ng-message="minlength && md-maxlength">El apellido debe de tener entre 2 y 25 caracteres.</div>
+                    <div ng-message="pattern">El apellido debe de tener solo letras.</div>
+                  </div>
+                </md-input-container>
+                <md-button href="application/php/locutores_r.php" target="_blank" class="md-raised md-primary center-block">
+                  <span>Reporte</span>
+                </md-button>
+                <br>
+              </div>
+              <div class="col-sm-6">
+                <md-input-container>
+                  <label>Correo</label>
+                  <input type="email" ng-model="Locutores.Correo" name="Correo" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+                  <div ng-show="LocutoresForm.Correo.$dirty" ng-messages="LocutoresForm.Correo.$error">
+                    <div ng-message="required">El locutor del locutor es requerido.</div>
+                    <div ng-message="pattern">El correo del locutor debe de ser valido.</div>
+                  </div>
+                </md-input-container>
+                <md-input-container>
+                  <label>Apodo</label>
+                  <input type="text" ng-model="Locutores.Apodo" name="Apodo" ng-minlength="2" md-maxlength="20" pattern="[a-zA-Z]+( [a-zA-Z]+)*$">
+                  <div ng-show="LocutoresForm.Apodo.$dirty" ng-messages="LocutoresForm.Apodo.$error">
+                    <div ng-message="required">El apodo del locutor es requerido.</div>
+                    <div ng-message="minlength && md-maxlength">El apodo debe de tener entre 2 y 20 caracteres.</div>
+                    <div ng-message="pattern">El apodo debe de tener solo letras.</div>
+                  </div>
+                </md-input-container>
+                <img src="" class="imgBox" id="imagen">
+                <input type="file" accept=".jpg,.png" id="uploader"/>
+                <br>
+              </div>
+              <div class="col-sm-12">
+                <div class="col-sm-6">
+                  <div class="col-sm-11">
+                    <div class="input-group">
+                      <span class="input-group-addon" id="basic-addon1">
+                          <md-icon md-font-library="material-icons">find_in_page</md-icon>
+                      </span>
+                      <input type="text" class="form-control" placeholder="Buscar por nombre" aria-describedby="basic-addon1" ng-model="Buscar" ng-keyup="buscar()">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <button class="btn btn-primary" ng-if="LocutoresForm.$valid && canAdd" ng-click="agregar()">Agregar</button>
+                  <button class="btn btn-primary" ng-if="!LocutoresForm.$valid && !canAdd || !LocutoresForm.$valid && canAdd || LocutoresForm.$valid && !canAdd" disabled>Agregar</button>
+                  <button class="btn btn-warning" ng-if="LocutoresForm.$valid && canModify" ng-click="modificar()">Modificar</button>
+                  <button class="btn btn-warning" ng-if="!LocutoresForm.$valid && !canModify || !LocutoresForm.$valid && canModify || LocutoresForm.$valid && !canModify" disabled>Modificar</button>
+                  <button class="btn btn-info" ng-click="limpiar()">Limpiar campos</button>
+                </div>
+              </div>
+              <div class="col-sm-12">
+                  <br>
+                  <table class="table">
+                    <tr>
+                      <td><strong>Nombre</strong></td>
+                      <td><strong>Apellido</strong></td>
+                      <td><strong>Correo</strong></td>
+                      <td><strong>Apodo</strong></td>
+                      <td><strong>Foto</strong></td>
+                      <td><strong>Acciones</strong></td>
+                    </tr>
+                    <tr ng-repeat="x in response | startFrom:currentPage*pageSize | limitTo:pageSize">
+                      <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;">{{x.Nombre}}</td>
+                      <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;">{{x.Apellido}}</td>
+                      <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;">{{x.Correo}}</td>
+                      <td style="word-wrap: break-word;min-width: 160px;max-width: 160px;">{{x.Apodo}}</td>
+                      <td><img class="imgBox" src="data:image/png;base64,{{x.Foto}}"/></td>
+                      <td>
+                        <button class="btn btn-danger" ng-click="eliminar(x.ID)">Eliminar</button>
+                        <button class="btn btn-warning" ng-click="editar(x.ID)">Editar</button>
+                      </td>
+                    </tr>
+                  </table>
+              </div>
+            </form>
+            <div class="col-sm-12">
+              <p>{{currentPage+1}}/{{numberOfPages()}}</p>
+              <div class="col-xs-1">
+                <button class="btn btn-primary" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+                  Anterior
+                </button>
+              </div>
+              <div class="col-xs-1">
+                <button class="btn btn-primary" ng-disabled="currentPage >= response.length/pageSize - 1" ng-click="currentPage=currentPage+1">
+                    Siguiente
+                </button>
+              </div>
+            </div>
+          </div>
+      </div>
+</div>
